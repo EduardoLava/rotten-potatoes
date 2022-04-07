@@ -1,7 +1,7 @@
 # This is a basic workflow to help you get started with Actions
 
 name: CI-CD
-
+#ci
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  CI:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -45,3 +45,18 @@ jobs:
           tags: |
             eduardolava/rotten-potatoes:latest
             eduardolava/rotten-potatoes:${{ github.run_number }}
+            
+# CD
+  CD:
+    needs: [ CI ] 
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Kubernetes Set Context
+        uses: Azure/k8s-set-context@v2
+        with: 
+          method: kubeconfig
+          kubeconfig: ${{ secrets.K8S_KUBE_CONFIG }}
+      
