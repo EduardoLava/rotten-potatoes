@@ -44,4 +44,4 @@ jobs:
           push: true
           tags:
             eduardolava/rotten-potatoes:latest
-            eduardolava/rotten-potatoes:{{github.run_number}}
+            eduardolava/rotten-potatoes:${{ github.run_number }}
