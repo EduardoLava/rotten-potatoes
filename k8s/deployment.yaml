@@ -83,4 +83,5 @@ spec:
     - port: 80 # porta que será exposta para acessar no navegador
       targetPort: 5000 # porta que o serviço irá utilizar
       nodePort: 30000
-  type: NodePort
+  type: LoadBalancer ## para rodar na nuvem
+  ##type: NodePort para local
